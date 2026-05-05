@@ -49,9 +49,9 @@ Customer
 
 ## Action Items
 - Pick one:
-  - Either a device that "moves": tracking location and doing location matching
-  - or a device that gathers data and may need to be serviced
+  - Either a device that "moves": tracking location and doing location matching: Autonomous vehicles, delivery robots
+  - or a devices that gathers data and may need to be serviced: temperature sensors, air quality monitors, etc
+  - Autonomous cleaning robots (like in Central Park?)
   - ATM ?
-  - coin to cash
-  - cleaning robots
+  - Bitcoin ATMs?
   
