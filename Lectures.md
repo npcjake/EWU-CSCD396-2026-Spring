@@ -124,8 +124,7 @@ Messaging and Eventing
 
 ## Lecture 14
 ### Topics Covered
-- API Management continued ***
-- Something
+- Fabric
 
 ## Lecture 15
 ### Topics Covered
@@ -150,7 +149,6 @@ Agile Project Management
   - Review and retrospective
   - Planning and estimation
 - Team project management and communication  
-
 
 ## Lecture 18
 ### Topics Covered
