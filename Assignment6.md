@@ -1,3 +1,5 @@
+revert to class project
+
 # EWU-CSCD396-2023-Fall
 
 ## Assignment 5
