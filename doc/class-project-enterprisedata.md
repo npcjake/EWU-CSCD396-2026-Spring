@@ -2,7 +2,9 @@
 Scenario informed by real world projects we've done with customers, but simplified to be achievable in a class project. The goal is to demonstrate using Azure services together to build a solution.
 
 ## Business Problem
-- Gather data from devices in the field
+We have autonomous food delivery robots in the field that are gathering data and fulfilling orders. We want to build a solution that can:
+
+- Gather data from delivery bots in the field
 - Process the data into useful information
 - Provide a web front end to view aggregated data and related information
 - Provide an API to return data: specific points, metadata, aggregated results
@@ -33,10 +35,21 @@ Orders
 
 Order Fulfillment
 - Completion of an order on a device
+- Acknowledge order
+- Pickup order
+- Deliver order
 
 Customer
 - Customers place orders that are fulfilled by devices in the field
 - Customers have a unique identifier and associated metadata (location, preferences, etc)
+
+Users/Administrators
+- Manage, configure, consume data
+
+## Delivery Robot
+- Each robot has a unique identifier and associated metadata (location, type, etc)
+- Robot delivers Temperature, GPS Location, Stock level, Power Level every n seconds
+- event schema
 
 ## Solution Components and Services
 
@@ -47,11 +60,15 @@ Customer
 - We want to be able to send notifications or alerts based on certain conditions in the data (e.g. if a certain threshold is exceeded, or if we see a certain pattern in the data)
 
 
-## Action Items
-- Pick one:
-  - Either a device that "moves": tracking location and doing location matching: Autonomous vehicles, delivery robots
-  - or a devices that gathers data and may need to be serviced: temperature sensors, air quality monitors, etc
-  - Autonomous cleaning robots (like in Central Park?)
-  - ATM ?
-  - Bitcoin ATMs?
+## Non Functional Requirements
+(moved to backlog)
+- Scalability: The solution must be able to handle a large number of devices and a high volume of data without performance degradation.
+- Security: all commited code should security scanned
+- Main branch is protected from non reviewed changes
+- all unit tests must pass
+- End to end tests must pass before merging to main
+- Dev*, test, prod environments
+
+
+
   
