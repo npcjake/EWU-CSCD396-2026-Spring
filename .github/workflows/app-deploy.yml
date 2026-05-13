@@ -1,0 +1,133 @@
+name: Deploy Applications
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Assignment3/container-app/**'
+      - 'Assignment3/function-app/**'
+      - '.github/workflows/app-deploy.yml'
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ARM_CLIENT_ID: ${{ vars.CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ vars.SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ vars.TENANT_ID }}
+
+jobs:
+  deploy-container-app:
+    name: Build and Deploy Container App
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v1
+        with:
+          client-id: ${{ vars.CLIENT_ID }}
+          tenant-id: ${{ vars.TENANT_ID }}
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
+
+      - name: Get Terraform Outputs
+        id: tf-outputs
+        working-directory: ./Terraform
+        run: |
+          # Initialize Terraform to read outputs
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.TF_STATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ vars.TF_STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.TF_STATE_CONTAINER }}" \
+            -backend-config="key=${{ vars.TF_STATE_KEY }}"
+
+          echo "acr_name=$(terraform output -raw acr_name)" >> $GITHUB_OUTPUT
+          echo "acr_login_server=$(terraform output -raw acr_login_server)" >> $GITHUB_OUTPUT
+          echo "container_app_name=$(terraform output -raw container_app_name 2>/dev/null || echo 'ca-demo-app')" >> $GITHUB_OUTPUT
+          echo "resource_group=$(terraform output -raw resource_group_name)" >> $GITHUB_OUTPUT
+
+      - name: Login to ACR
+        run: |
+          az acr login --name ${{ steps.tf-outputs.outputs.acr_name }}
+
+      - name: Build and Push Container Image
+        working-directory: ./Assignment3/container-app
+        run: |
+          IMAGE_TAG=${{ steps.tf-outputs.outputs.acr_login_server }}/webapp:${{ github.sha }}
+          docker build -t $IMAGE_TAG .
+          docker push $IMAGE_TAG
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+
+      - name: Update Container App
+        run: |
+          az containerapp update \
+            --name ${{ steps.tf-outputs.outputs.container_app_name }} \
+            --resource-group ${{ steps.tf-outputs.outputs.resource_group }} \
+            --image ${{ env.IMAGE_TAG }}
+
+      - name: Deployment Summary
+        run: |
+          echo "## Container App Deployed!" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image:** ${{ env.IMAGE_TAG }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Container App:** ${{ steps.tf-outputs.outputs.container_app_name }}" >> $GITHUB_STEP_SUMMARY
+
+  deploy-function-app:
+    name: Deploy Function App
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Azure Login with OIDC
+        uses: azure/login@v1
+        with:
+          client-id: ${{ vars.CLIENT_ID }}
+          tenant-id: ${{ vars.TENANT_ID }}
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
+
+      - name: Get Terraform Outputs
+        id: tf-outputs
+        working-directory: ./Terraform
+        run: |
+          terraform init \
+            -backend-config="resource_group_name=${{ vars.TF_STATE_RESOURCE_GROUP }}" \
+            -backend-config="storage_account_name=${{ vars.TF_STATE_STORAGE_ACCOUNT }}" \
+            -backend-config="container_name=${{ vars.TF_STATE_CONTAINER }}" \
+            -backend-config="key=${{ vars.TF_STATE_KEY }}"
+
+          echo "function_app_name=$(terraform output -raw function_app_name)" >> $GITHUB_OUTPUT
+
+      - name: Install Dependencies
+        working-directory: ./Assignment3/function-app
+        run: npm install
+
+      - name: Deploy Function App
+        working-directory: ./Assignment3/function-app
+        run: |
+          # Create deployment package
+          zip -r function.zip . -x "*.git*" -x "node_modules/.cache/*"
+
+          # Deploy to Azure Function App
+          az functionapp deployment source config-zip \
+            --name ${{ steps.tf-outputs.outputs.function_app_name }} \
+            --resource-group $(az functionapp show --name ${{ steps.tf-outputs.outputs.function_app_name }} --query resourceGroup -o tsv) \
+            --src function.zip
+
+      - name: Deployment Summary
+        run: |
+          echo "## Function App Deployed!" >> $GITHUB_STEP_SUMMARY
+          echo "- **Function App:** ${{ steps.tf-outputs.outputs.function_app_name }}" >> $GITHUB_STEP_SUMMARY

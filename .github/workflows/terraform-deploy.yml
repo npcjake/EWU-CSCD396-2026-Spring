@@ -133,13 +133,21 @@ jobs:
       - name: Display Deployment URLs
         working-directory: ${{ env.WORKING_DIR }}
         run: |
-          echo "## Deployment Complete! 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "## Deployment Complete!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Deployed Resources:" >> $GITHUB_STEP_SUMMARY
           echo "- **Container App:** $(terraform output -raw container_app_url)" >> $GITHUB_STEP_SUMMARY
           echo "- **Function App:** $(terraform output -raw function_app_url)" >> $GITHUB_STEP_SUMMARY
           echo "- **Logic App:** $(terraform output -raw logic_app_url)" >> $GITHUB_STEP_SUMMARY
           echo "- **Resource Group:** $(terraform output -raw resource_group_name)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Service Bus:** $(terraform output -raw servicebus_namespace)" >> $GITHUB_STEP_SUMMARY
+
+  # Redeploy applications after infrastructure changes
+  deploy-apps:
+    name: Deploy Applications After Infra
+    needs: terraform-apply
+    uses: ./.github/workflows/app-deploy.yml
+    secrets: inherit
 
   terraform-destroy:
     name: Terraform Destroy

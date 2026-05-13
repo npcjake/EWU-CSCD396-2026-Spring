@@ -1,0 +1,17 @@
+{
+  "name": "assignment3-function",
+  "version": "1.0.0",
+  "description": "Azure Function that processes Service Bus messages and writes to storage",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "@azure/identity": "^4.0.0",
+    "@azure/storage-blob": "^12.17.0"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.x"
+  }
+}
