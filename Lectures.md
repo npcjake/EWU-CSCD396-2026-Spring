@@ -120,12 +120,11 @@ Messaging and Eventing
 
 ## Lecture 13
 ### Topics Covered
-- Query Cosmos DB 
-- Cosmos DB Change Feed
+- AI Foundry
 
 ## Lecture 14
 ### Topics Covered
-- AI Foundry
+- Azure Monitor
 
 - Backlog Grooming
 - Flesh out user stories
@@ -133,7 +132,9 @@ Messaging and Eventing
 
 ## Lecture 15
 ### Topics Covered
-- Azure Monitor
+- App Configuration Service
+- Sample architecture
+
 
 ## Lecture 16
 Set the plan for remaining classes
@@ -153,7 +154,7 @@ Agile Project Management
 
 ## Lecture 18
 ### Topics Covered
-- App Configuration Service
+
 
 ## Lecture 19
 ### Topics Covered
@@ -172,6 +173,7 @@ Agile Project Management
 ## Topics to Cover
 - o GitHub Issues/Boards
 - Run a sprint
+- 
 ---
 - Scrum/Agile
 ---
@@ -202,7 +204,7 @@ Following is the primary list of services we plan to cover in this class. Note t
 
 ### In Process
 - Azure Monitor and App Insights
-    - Instrument Joke
+    - Instrument class project
     - Additional Queries and/or alerts
 - App Configuration Service
     - Deployment

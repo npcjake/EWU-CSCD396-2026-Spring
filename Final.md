@@ -3,10 +3,21 @@
 ## Final
 
 The purpose of this assignment is to demonstrate understanding of class material and instruction.
-- Demonstrate solution in Azure utilizing 5 different Azure Services connected together in some way
-- At least 4 of the 5 should be services we've covered in class
 
-## How we'll grade the final
+You will have 2 options for the final:
+1. Take on a significant feature updates of the class project demonstrating your knowledge of Azure Services. The updates should touch at least 5 of the Azure Services in some way. We can work together do develop the plan
+2. Create your own solution in Azure utilizing 5 different Azure Services connected together in some way. At least 4 of the 5 should be services we've covered in class
+
+## How we'll grade the final: Class project solution
+- Final (50 points)
+- 15 points for first 3 services
+- 10 additional points for 4th service
+- 10 additional point for 5th service (25 max) 
+- 5 points for presentation
+- 5 points for GitHub Action Deployment of at least 1 service
+- 5 points for Infrastructure as Code deployment of at least 1 service 
+
+## How we'll grade the final: Your own solution
 
 Final (50 points)
 - 15 points for first 3 services
@@ -14,7 +25,7 @@ Final (50 points)
 - 10 additional point for 5th service (25 max) 
 - 5 points for presentation
 - 5 points for GitHub Action Deployment of at least 1 service
-- 5 points for Infrastructure as Code deployment of at least 1 servcie 
+- 5 points for Infrastructure as Code deployment of at least 1 service 
 
 Notes on Final Presentation
 - Come prepared with all resources deployed

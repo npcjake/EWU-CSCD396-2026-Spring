@@ -1,7 +1,5 @@
 # Assignments
 
-## All this needs to be updated
-
 1. [Assignment 1](Assignment1.md)
    - 100 points +5 EC points
    - Assigned: 4/7
@@ -15,48 +13,37 @@
    - Assigned: 4/28
    - Turn in: 5/12 11:59 pm
 1. [Assignment 4](Assignment4.md)
-   - 100 points +5 EC points
+   - 25 points +5 EC points
    - Assigned: 5/12
-   - Turn in: 5/26 11:59 pm
+   - Turn in: 5/14 2:00 pm
 1. [Assignment 5](Assignment5.md)
-   - 100 points +5 EC points
+   - 25 points +5 EC points
+   - Assigned: 5/14
+   - Turn in: 5/19 2:00 pm
+1. [Assignment 6](Assignment6.md)
+   - 25 points +5 EC points
+   - Assigned: 5/19
+   - Turn in: 5/21 2:00 pm
+1. [Assignment 7](Assignment7.md)
+   - 25 points +5 EC points
+   - Assigned: 5/21
+   - Turn in: 5/26 2:00 pm
+1. [Assignment 8](Assignment8.md)
+   - 25 points +5 EC points
    - Assigned: 5/26
-   - Turn in: 6/4 11:59 pm
+   - Turn in: 5/28 2:00 pm
+1. [Assignment 9](Assignment9.md)
+   - 25 points +5 EC points
+   - Assigned: 5/28
+   - Turn in: 6/2 2:00 pm
+1. [Assignment 10](Assignment10.md)
+   - 25 points +5 EC points
+   - Assigned: 6/2
+   - Turn in: 6/4 2:00 pm
 1. [Final Project](Final.md)
-   - 50 points +50 EC points
+   - 100 points +50 EC points
    - Assigned: 5/26
    - Final project presentations finals week
-
-If you are having trouble viwing the below graph, copy the code and paste it [in this editor](https://mermaid-js.github.io/docs/mermaid-live-editor-beta)
-
-```mermaid
-gantt
-    title Assignments Timeline
-    dateFormat  YYYY-MM-DD
-    section Assignment1
-    Assigned :A1, 2023-04-04, 2023-04-09
-    Code Review :A1-CR, 2023-04-09, 2023-04-11
-    Final Changes :A1-FC, 2023-04-11, 2023-04-13
-    section Assignment2
-    Assigned :A2, 2023-04-13, 2023-04-23
-    Code Review :A2-CR, 2023-04-23, 2023-04-25
-    Final Changes :A2-FC, 2023-04-25, 2023-04-27
-    section Assignment3
-    Assigned :A3, 2023-04-27, 2023-05-07
-    Code Review :A3-CR, 2023-05-07, 2023-05-09
-    Final Changes :A3-FC, 2023-05-09, 2023-05-11
-    section Assignment4
-    Assigned :A4, 2023-05-11, 2023-05-21
-    Code Review :A4-CR, 2023-05-21, 2023-05-23
-    Final Changes :A4-FC, 2023-05-23, 2023-05-25
-    section Assignment5
-    Assigned :A5, 2023-05-25, 2023-06-04
-    Code Review :A5-CR, 2023-06-04, 2023-06-06
-    Final Changes :A5-FC, 2023-06-06, 2023-06-08
-    section Final
-    Final Project :F, 2023-06-08, 2023-06-15
-
-```
 
 ---
 
@@ -68,7 +55,7 @@ gantt
 - Readme.md with a link to the resource group with the assignment. Your assignment will be fully contained in a single resource group. All resources for the assignment must be in the resource group. The resource group must be named according to the assignment requirements. Resource groups can be renamed.
 - Once your assignment is complete, create a PR against the assignment branch
 
-# How To Submit (Starting 4/7/26)
+# How To Submit Assignments 1, 2 and 3 (Starting 4/7/26)
 
 ### Make an Assignment PR against Class Repository
 
@@ -76,6 +63,12 @@ gantt
 - When you are ready to make your PR, create a pull request against the class repository assignment branch, attempting to merge in YOUR assignment branch from YOUR forked repo.
 
 - On the PR against the class repo, be sure to add any releveant or required information.
+
+# How to Submit Class Project Assignments
+1. Update the GitHub  Project as needed to relect work to be done on the assignmnet
+2. Create a branch for the assignment work from the issue you are working on
+3. Make your changes in the branch and push to your forked repo (if you forked)
+4. Create a PR against the class repository assignment branch
 
 # Grading Breakdown
 
