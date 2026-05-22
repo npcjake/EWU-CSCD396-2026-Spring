@@ -210,7 +210,6 @@ resource "azurerm_linux_function_app" "main" {
 
   app_settings = {
     "FUNCTIONS_WORKER_RUNTIME"       = "node"
-    "WEBSITE_RUN_FROM_PACKAGE"       = "1"
     "ServiceBusConnection__fullyQualifiedNamespace" = "${azurerm_servicebus_namespace.main.name}.servicebus.windows.net"
     "STORAGE_ACCOUNT_NAME"           = azurerm_storage_account.messages.name
     "STORAGE_CONTAINER_NAME"         = azurerm_storage_container.messages.name
