@@ -50,7 +50,7 @@ jobs:
   terraform-plan:
     name: Terraform Plan
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan')
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan'
     
     steps:
       - name: Checkout code
