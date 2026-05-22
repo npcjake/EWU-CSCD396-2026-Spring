@@ -130,16 +130,11 @@ jobs:
         run: npm install --omit=dev
 
       - name: Deploy Function App
-        working-directory: ./Assignment3/function-app
-        run: |
-          # Create deployment package
-          zip -r function.zip . -x "*.git*" -x "node_modules/.cache/*"
-
-          # Deploy to Azure Function App
-          az functionapp deployment source config-zip \
-            --name ${{ steps.tf-outputs.outputs.function_app_name }} \
-            --resource-group ${{ steps.tf-outputs.outputs.resource_group }} \
-            --src function.zip
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ steps.tf-outputs.outputs.function_app_name }}
+          package: './Assignment3/function-app'
+          respect-funcignore: true
 
       - name: Deployment Summary
         run: |
