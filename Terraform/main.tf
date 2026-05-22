@@ -243,7 +243,7 @@ resource "azurerm_storage_account" "messages" {
 # Storage Container for messages
 resource "azurerm_storage_container" "messages" {
   name                  = "messages"
-  storage_account_id    = azurerm_storage_account.messages.id
+  storage_account_name  = azurerm_storage_account.messages.name
   container_access_type = "private"
 }
 
@@ -285,7 +285,6 @@ resource "azurerm_logic_app_standard" "main" {
   }
 
   site_config {
-    use_32_bit_worker = false
   }
 }
 
