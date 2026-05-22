@@ -43,13 +43,13 @@ env:
   ARM_TENANT_ID: ${{ vars.TENANT_ID }}
   ARM_USE_OIDC: true
   # Terraform Variables
-  TF_VAR_resource_group_name: 'rg-vm-test1'
+  TF_VAR_resource_group_name: 'rg-assignment3'
   TF_VAR_location: 'eastus'
-  TF_VAR_function_app_name: fn-test-2026
-  TF_VAR_logic_app_name: lg-test-2026
-  TF_VAR_storage_account_name: ewutest2026
-  TF_VAR_container_app_name: ca-test-2026
-  TF_VAR_environment_name: development
+  TF_VAR_function_app_name: fn-assign3-jake
+  TF_VAR_logic_app_name: lg-assign3-jake
+  TF_VAR_storage_account_name: ewua3jake26
+  TF_VAR_container_app_name: ca-assign3-jake
+  TF_VAR_environment_name: assign3jake
 
 jobs:
   terraform-plan:
