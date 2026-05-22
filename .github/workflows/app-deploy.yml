@@ -19,6 +19,7 @@ env:
   ARM_CLIENT_ID: ${{ vars.CLIENT_ID }}
   ARM_SUBSCRIPTION_ID: ${{ vars.SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ vars.TENANT_ID }}
+  ARM_USE_OIDC: true
 
 jobs:
   deploy-container-app:
