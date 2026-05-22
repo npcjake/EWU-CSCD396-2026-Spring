@@ -136,10 +136,11 @@ jobs:
           zip -r function.zip . -x "*.git*" -x "node_modules/.cache/*"
 
           # Deploy to Azure Function App
-          az functionapp deployment source config-zip \
+          az functionapp deploy \
             --name ${{ steps.tf-outputs.outputs.function_app_name }} \
             --resource-group ${{ steps.tf-outputs.outputs.resource_group }} \
-            --src function.zip
+            --src-path function.zip \
+            --type zip
 
       - name: Deployment Summary
         run: |
