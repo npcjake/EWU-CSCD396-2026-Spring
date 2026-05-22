@@ -1,0 +1,4 @@
+resource_group_name  = "rg-vmtest1"
+storage_account_name = "ewu2026test"
+container_name       = "tfstate"
+key                  = "assignment2.tfstate"
