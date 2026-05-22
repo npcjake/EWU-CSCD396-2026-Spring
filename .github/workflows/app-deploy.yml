@@ -73,6 +73,8 @@ jobs:
 
       - name: Update Container App
         run: |
+          # Wait for any in-progress provisioning to settle
+          sleep 30
           az containerapp update \
             --name ${{ steps.tf-outputs.outputs.container_app_name }} \
             --resource-group ${{ steps.tf-outputs.outputs.resource_group }} \
@@ -124,7 +126,7 @@ jobs:
 
       - name: Install Dependencies
         working-directory: ./Assignment3/function-app
-        run: npm install
+        run: npm install --omit=dev
 
       - name: Deploy Function App
         working-directory: ./Assignment3/function-app
