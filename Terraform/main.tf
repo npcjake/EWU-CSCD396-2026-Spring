@@ -270,41 +270,6 @@ resource "azurerm_application_insights" "main" {
   application_type    = "web"
 }
 
-# Logic App (Standard)
-resource "azurerm_logic_app_standard" "main" {
-  name                       = var.logic_app_name
-  location                   = azurerm_resource_group.main.location
-  resource_group_name        = azurerm_resource_group.main.name
-  app_service_plan_id        = azurerm_service_plan.logic.id
-  storage_account_name       = azurerm_storage_account.logic.name
-  storage_account_access_key = azurerm_storage_account.logic.primary_access_key
-
-  app_settings = {
-    "FUNCTIONS_WORKER_RUNTIME"     = "node"
-    "WEBSITE_NODE_DEFAULT_VERSION" = "~18"
-  }
-
-  site_config {
-  }
-}
-
-# Storage Account for Logic App
-resource "azurerm_storage_account" "logic" {
-  name                     = "${var.storage_account_name}logic"
-  resource_group_name      = azurerm_resource_group.main.name
-  location                 = azurerm_resource_group.main.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-# App Service Plan for Logic App
-resource "azurerm_service_plan" "logic" {
-  name                = "asp-${var.logic_app_name}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
-  os_type             = "Windows"
-  sku_name            = "WS1" # Workflow Standard
-}
 
 # Outputs
 output "container_app_name" {
@@ -340,16 +305,6 @@ output "function_app_name" {
 output "function_app_url" {
   description = "Default hostname of the Function App"
   value       = "https://${azurerm_linux_function_app.main.default_hostname}"
-}
-
-output "logic_app_name" {
-  description = "Name of the Logic App"
-  value       = azurerm_logic_app_standard.main.name
-}
-
-output "logic_app_url" {
-  description = "Default hostname of the Logic App"
-  value       = "https://${azurerm_logic_app_standard.main.default_hostname}"
 }
 
 output "storage_account_name" {

@@ -138,7 +138,6 @@ jobs:
           echo "### Deployed Resources:" >> $GITHUB_STEP_SUMMARY
           echo "- **Container App:** $(terraform output -raw container_app_url)" >> $GITHUB_STEP_SUMMARY
           echo "- **Function App:** $(terraform output -raw function_app_url)" >> $GITHUB_STEP_SUMMARY
-          echo "- **Logic App:** $(terraform output -raw logic_app_url)" >> $GITHUB_STEP_SUMMARY
           echo "- **Resource Group:** $(terraform output -raw resource_group_name)" >> $GITHUB_STEP_SUMMARY
           echo "- **Service Bus:** $(terraform output -raw servicebus_namespace)" >> $GITHUB_STEP_SUMMARY
 
