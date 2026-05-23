@@ -18,6 +18,11 @@ on:
     paths:
       - 'Terraform/**'
       - '.github/workflows/terraform-deploy.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Terraform/**'
 
 permissions:
   id-token: write
@@ -50,7 +55,8 @@ jobs:
   terraform-plan:
     name: Terraform Plan
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan'
+    if: github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.action == 'plan')
+    environment: production
     
     steps:
       - name: Checkout code
