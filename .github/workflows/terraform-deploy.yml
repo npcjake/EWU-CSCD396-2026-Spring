@@ -23,6 +23,7 @@ on:
       - main
     paths:
       - 'Terraform/**'
+      - '.github/workflows/terraform-deploy.yml'
 
 permissions:
   id-token: write
